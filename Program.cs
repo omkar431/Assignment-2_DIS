@@ -232,7 +232,7 @@ public static int GoldRod(int rodLength)
 {
     try
             {
-                // As per the rodLength values PriceProduct
+                // As per the rodLength returning the values of PriceProduct
                 if (rodLength == 2)
                     return 1;
                 else if (rodLength == 3)
