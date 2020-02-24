@@ -21,7 +21,7 @@ namespace Assignment_2_DIS
             Console.WriteLine(rs);
             
             Console.WriteLine("Question 3");
-            int[] l2 = new int[] { 4, 5, 6, 9 } ;
+            int[] l2 = new int[] { 2, 2, 3, 5, 6 } ;
             int sum = MinimumSum(l2);
             Console.WriteLine(sum);
             
@@ -31,8 +31,8 @@ namespace Assignment_2_DIS
             Console.WriteLine(sortedString);
             
             Console.WriteLine("Question 5-Part 1");
-            int[] nums1 = { 3, 6, 2 };
-            int[] nums2 = { 6,3,6,7,3 };
+            int[] nums1 = { 2, 5, 5, 2 };
+            int[] nums2 = { 5,5 };
             int[] intersect1 = Intersect1(nums1, nums2);
             Console.WriteLine("Part 1- Intersection of two arrays is: ");
             DisplayArray(intersect1);
@@ -97,38 +97,20 @@ namespace Assignment_2_DIS
         {
             try
             {
-                //Write your code here;
-                var h = new HashSet<int>(l2); // making a set to remove duplicates
-                int[] arr2 = h.ToArray();  
-                if (!l2.SequenceEqual(arr2)) // if array is already distint no action
+                int res = 0;
+                for (int i = 0; i <= l2.Length - 1; i++)
                 {
-                    int sum = 0;
-                    //Console.WriteLine();
-                    //foreach(int i in h){
-                    //Console.WriteLine(i);
-                    //}
-                    int average = Convert.ToInt32(arr2.Average()); // taking avarage to ensure minimum sum
-                    //Console.WriteLine("Average"+average);
-                    foreach (int i in h)
+                    res = res + l2[i]; // Calculating sum of elements in array 
+                    if (i != l2.Length - 1 && l2[i + 1] == l2[i]) 
                     {
-                        if (average == i)
-                        {
-                            average = average + 1;
-
-                        }
+                        l2[i + 1] = l2[i + 1] + 1;
                     }
-
-
-                    h.Add(average);
-
-                    return h.Sum();
-                }
-                else
-                {
-                   return l2.Sum();
-                }
-
+                } // Comparing each element in array with previous one and adding one in it (l2[i+1]) if found similar
+                return res; 
             }
+
+
+        
 
 
             
@@ -163,8 +145,8 @@ public static int[] Intersect1(int[] nums1, int[] nums2)
                 // Sorted both the array
                 int m = nums1.Length;
                 int n = nums2.Length;
-                int i = 0, j = 0;
-                ArrayList myAL = new ArrayList(); 
+                int i = 0, j = 0; 
+                ArrayList myAL = new ArrayList();// Creates and initializes a new ArrayList.
 
 
                 while (i < m && j < n)
@@ -178,10 +160,13 @@ public static int[] Intersect1(int[] nums1, int[] nums2)
                         
                         myAL.Add(nums2[j++]);
                         i++;
-                    }  
+                    }  // Stored the same elements from both the array in myAL
                     
                 }
-                object[] obj1 = myAL.ToArray(); 
+                // converting myAL arraylist to array
+
+                object[] obj1 = myAL.ToArray();  
+                // created a new array a 
                 int[] a = new int[obj1.Length]; 
                 int x = 0;
                 foreach (int st in obj1)
@@ -196,7 +181,6 @@ public static int[] Intersect1(int[] nums1, int[] nums2)
             {
                 throw;
             }
-    return new int[] { };
 }
 public static int[] Intersect2(int[] nums1, int[] nums2)
 {
@@ -206,7 +190,7 @@ public static int[] Intersect2(int[] nums1, int[] nums2)
 
                 foreach (var num in nums1)
                 {
-                    if (!Countnum.ContainsKey(num))
+                    if (!Countnum.ContainsKey(num)) // check if the number exist in the dictionary and add into dictionary if not present
                     Countnum[num] = 0;
                     Countnum[num]++;
                 }
@@ -215,15 +199,15 @@ public static int[] Intersect2(int[] nums1, int[] nums2)
 
                 foreach (var num in nums2)
                 {
-                    if (Countnum.ContainsKey(num) && Countnum[num] > 0)
+                    if (Countnum.ContainsKey(num) && Countnum[num] > 0) //check if number in num2 are present in the dictionary 
                     {
-                        Intersection.Add(num);
+                        Intersection.Add(num);// if number is present in num2 add to a list  
 
                         Countnum[num]--;
                     }
 
                 }
-                return Intersection.ToArray();
+                return Intersection.ToArray();  
             }
 
             catch
@@ -247,7 +231,8 @@ public static bool ContainsDuplicate(char[] arr, int k)
 public static int GoldRod(int rodLength)
 {
     try
-    {
+            {
+                // As per the rodLength values PriceProduct
                 if (rodLength == 2)
                     return 1;
                 else if (rodLength == 3)
@@ -266,7 +251,6 @@ public static int GoldRod(int rodLength)
     {
         throw;
     }
-    return 0;
 }
 public static bool DictSearch(string[] userDict, string keyword)
 {
